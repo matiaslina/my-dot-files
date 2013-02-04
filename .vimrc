@@ -18,7 +18,7 @@ colorscheme github
 
 "Font
 if has('gui_running')
-	set guifont=Droid\ Sans\ Mono\ 9
+	set guifont=Monospace\ 9
 endif
 
 "Use ALT + arrow to navigation over the windows
@@ -60,3 +60,9 @@ inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Es
 nnoremap qw :silent! normal mpea'<Esc>bi'<Esc>`pl
 " "quote" a word
 nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
+
+" Vala extensions
+autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
+
+let vala_comment_strings = 1
