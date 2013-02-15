@@ -6,6 +6,15 @@ filetype plugin on
 set autoindent
 set smartindent
 
+set nobackup
+set nowritebackup
+
+set tabstop=4
+set number
+
+"No help
+nmap <F1> <Esc>
+
 if has("autocmd")
   filetype indent on
 endif
@@ -13,12 +22,12 @@ endif
 " Pathogen
 call pathogen#infect()
 
-" Colorscheme
-colorscheme github
 
 "Font
 if has('gui_running')
 	set guifont=Monospace\ 9
+	" Colorscheme
+	colorscheme github
 endif
 
 "Use ALT + arrow to navigation over the windows
@@ -57,12 +66,11 @@ inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Es
             \ '<C-x><C-u><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
 
 " 'quote' a word
-nnoremap qw :silent! normal mpea'<Esc>bi'<Esc>`pl
+"nnoremap qw :silent! normal mpea'<Esc>bi'<Esc>`pl
 " "quote" a word
-nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
+"nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
 
 " Vala extensions
-autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
-au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
-
-let vala_comment_strings = 1
+"autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+"au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
+"let vala_comment_strings = 1
