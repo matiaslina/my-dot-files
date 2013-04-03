@@ -2,14 +2,19 @@
 syntax on
 filetype plugin on
 
-"indent"
-set autoindent
-set smartindent
-
+" No backup
 set nobackup
 set nowritebackup
 
+
+"indent"
+set autoindent
+set smartindent
 set tabstop=4
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+
 set number
 
 "No help
@@ -41,6 +46,9 @@ nmap <silent> <A-Right> :wincmd l<CR>
 map <F2> :NERDTreeToggle<cr>
 map <F3> :TlistToggle<cr>
 
+" Golang
+au BufRead,BufNewFile *.go set filetype=go
+
 " Set the omnicomplete working
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -64,13 +72,3 @@ inoremap <expr> <C-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Es
 " open user completion menu closing previous if open and opening new menu without changing the text
 inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
             \ '<C-x><C-u><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
-
-" 'quote' a word
-"nnoremap qw :silent! normal mpea'<Esc>bi'<Esc>`pl
-" "quote" a word
-"nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
-
-" Vala extensions
-"autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
-"au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
-"let vala_comment_strings = 1
