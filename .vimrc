@@ -1,74 +1,57 @@
-" Syntax
-syntax on
 filetype plugin on
-
-" No backup
-set nobackup
-set nowritebackup
-
-
-"indent"
-set autoindent
-set smartindent
-set tabstop=4
-set expandtab
-set shiftwidth=4
-set softtabstop=4
+filetype indent on
 
 set number
 
-"No help
+set autoread 
+
+let mapleader = ","
+let g:mapleader = ","
+
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+set incsearch
+
+set noerrorbells
+set novisualbell
+
+syntax enable
+
+if has("gui_running")
+	set guioptions-=T
+	set guioptions+=e
+    set guifont=Monospace\ 9
+    try
+        colorscheme github
+    catch /^Vim\%((\a\+)\)\=:E185/
+        " none
+    endtry
+endif
+
+set nobackup
+set nowb
+set noswapfile
+
+" Indent
+set expandtab
+set smarttab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set ai
+set si
+set wrap
+
 nmap <F1> <Esc>
 
-if has("autocmd")
-  filetype indent on
-endif
-
-" Pathogen
-call pathogen#infect()
-
-
-"Font
-if has('gui_running')
-	set guifont=Monospace\ 9
-	" Colorscheme
-	colorscheme github
-endif
-
-"Use ALT + arrow to navigation over the windows
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
-
-
-" Maps for plugins
-map <F2> :NERDTreeToggle<cr>
-map <F3> :TlistToggle<cr>
-
-" Golang
 au BufRead,BufNewFile *.go set filetype=go
 
-" Set the omnicomplete working
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
+" No More Arrows
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
-:set completeopt=longest,menuone
-:inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-  
-" open omni completion menu closing previous if open and opening new menu without changing the text
-inoremap <expr> <C-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
-            \ '<C-x><C-o><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
-" open user completion menu closing previous if open and opening new menu without changing the text
-inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
-            \ '<C-x><C-u><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
+set showmode showcmd
+set laststatus=2
