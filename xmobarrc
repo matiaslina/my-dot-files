@@ -1,0 +1,16 @@
+Config {
+    font = "xft:Fira Mono:pixelsize=10",
+    bgColor = "#101010",
+    fgColor = "#b5bbb3",
+    position = Static { xpos = 0, ypos = 0, width = 1290, height = 16},
+    commands = [ Run Com "echo" ["$USER"] "username" 864000,
+    Run Com "hostname" ["-s"] "hostname" 864000,
+    Run Date "%a %b %d" "date" 36000,
+    Run Date "%H:%M" "time" 10,
+    Run Battery ["-t","<left>%/ <timeleft>","-L","50","-H","75","-h","green","-n","yellow","-l","red"] 10,
+    Run StdinReader
+    ],
+    sepChar = "'",
+    alignSep = "}{",
+    template = "'StdinReader' }{ 'battery' 'date' - 'time'"
+}
