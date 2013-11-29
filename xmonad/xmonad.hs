@@ -14,13 +14,13 @@ import XMonad.Prompt.Shell
 myLayout = tiled ||| Mirror tiled ||| Full
     where
         --default tiling algoritm
-        tiled = spacing 2 $ Tall nmaster delta ratio
+        tiled = Tall nmaster delta ratio
 
         -- default number of windows in master pane
         nmaster = 1
 
         -- Default proportion of screen occupied
-        ratio = 7/10
+        ratio = 6/10
 
         -- persent of screen to increment by when resizin panes
         delta = 3/100
@@ -43,8 +43,8 @@ mySP = defaultXPConfig
 
 main = do
     xmproc <- spawnPipe "xmobar"
-    spawn trayerScript
-    spawn "nm-applet"
+    --spawn trayerScript
+    --spawn "nm-applet"
     spawn "nitrogen --restore"
     xmonad $ defaultConfig
         { terminal = "gnome-terminal"
@@ -65,9 +65,7 @@ main = do
             ((mod4Mask, xK_o), spawn "firefox"),
             ((mod4Mask .|. shiftMask, xK_o), spawn "thunderbird"),
             ((mod4Mask, xK_p), shellPrompt mySP),
-
-            -- shell
-            ((mod4Mask .|. controlMask, xK_x), shellPrompt defaultXPConfig)
+            ((mod4Mask, xK_b), sendMessage ToggleStruts)
         ]
 
 trayerScript = "trayer --align right --edge top --widthtype pixel --width 76 --height 8 --SetDockType true --SetPartialStrut true  --transparent true --alpha 0 --tint 0x000000"

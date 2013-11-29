@@ -24,8 +24,9 @@ if has("gui_running")
     " Scrolls
     set guioptions-=l
     set guioptions-=r
-    set guifont=Fira\ Mono\ 9
-    colo molokai
+    "set guifont=Fira\ Mono\ 9
+    set guifont=Fixed\ 10
+    colo codeschool
 endif
 
 set nobackup
@@ -45,7 +46,7 @@ set wrap
 set showcmd
 "set showmode showcmd
 "set laststatus=2
-"setglobal cmdheight=1
+"setglobal cmdheht=1
 
 nmap <F1> <Esc>
 nmap <F2> :NERDTreeToggle <cr>
@@ -79,4 +80,14 @@ function Show_menu()
     endif
 endfunction
 
+set colorcolumn=0
+function Toggle_colorcolumn()
+    if &colorcolumn == 0
+        set colorcolumn=80
+    else
+        set colorcolumn=0
+    endif
+endfunction
+
 nmap <Leader>A :call Show_menu() <cr>
+nmap <Leader>p :call Toggle_colorcolumn() <cr>
